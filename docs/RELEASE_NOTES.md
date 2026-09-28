@@ -1,0 +1,7 @@
+- Two of the five damaging parts of the Lumberer's flame (shared with the Flame Sentry) never spawned: their start-up curves step up at a fixed fraction of the effect's lifetime, which the Cremator's flame sets to 64 s and the shared flame to 1e10 s. They now start with the Cremator's timing (0.4 and 0.6 s into a burst). In recorded play the Lumberer averaged 4.7 hits per damage window on bugs without the fix and 14.7 with it; the Cremator averaged 14.6 (different fights, so a rough comparison).
+- The four main flame parts start at the Cremator's distances from the nozzle (1-4 m instead of 7-15 m), so close targets are hit.
+- The flame no longer hits the Lumberer's own hull, arm and cannon: in recorded play, 8 bursts with the fix had no self-hits (0 hull damage from the flame), against 222 self-hits (about 375 hull damage) in 8 bursts without it, with hits on bugs unchanged.
+- Damage, fuel, heat and burning values are unchanged; other flamethrowers keep their collision layer.
+- The Flame Sentry uses the same flame and gets the same fixes; it was checked offline only (not yet in game).
+- Steam build 25480438 only; requires Bingus Shared Loader v18 or newer.
+- Per-frame cost in recorded play: 0.0015 ms per frame aboard the ship and 0.008 ms per frame in missions; the frame that starts a burst takes 0.3-1.3 ms once (the memory-protection check before the flame changes collision layer).
