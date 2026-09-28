@@ -1,20 +1,23 @@
-Flame Damage Fixed v1.0
+Flame Damage Fixed v1.1
 Supports Helldivers 2 Steam build 25480438 / EXE 1.8.46015.0.
 
 Install Bingus Shared Loader v18 or newer and import this ZIP into Arsenal or
 HD2MM. Enable and deploy both, then restart Helldivers 2. Keep the shared
 loader as the winning Wwise startup replacement.
 
-Vanilla Plus Megapack v33 also contains this addon as an option; use either
+Vanilla Plus Megapack v34 also contains this addon as an option; use either
 the Megapack option or this package, not both.
 
 What it fixes, for the Lumberer's flamethrower arm and the Flame Sentry (they
 share one flame):
 - Two of the flame's five damaging parts never spawned. They now spawn with
-  the Cremator's timing, about 0.4 and 0.6 s into a burst.
+  the Cremator's timing, about 0.4 and 0.6 s into a burst. They hit but are
+  not drawn, so the flame still looks like one stream.
 - The flame starts at the Cremator's distances from the nozzle (1-4 m instead
   of 7-15 m), so bugs close to the Lumberer are hit too.
-- The flame no longer hits the Lumberer itself.
+- The flame no longer hits the weapon that fires it, and still hits everything
+  else, Chargers and other armoured targets included (v1.0's flame passed
+  through them).
 Damage, fuel, heat and burning values are unchanged, and other flamethrowers
 are not affected.
 

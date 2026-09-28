@@ -9,7 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from patch_table import build_table, release_rows  # noqa: E402
+from patch_table import build_table, lab_group, release_rows  # noqa: E402
 
 
 def lua_constants(path):
@@ -50,7 +50,7 @@ def check_lab(table):
     header, systems, patches = lua_constants(ROOT / 'src/lumberer_flame_lab.lua')
     assert header == table['header'], 'lab header differs from the shipped effect'
     assert systems == [tuple(s) for s in table['systems']], 'lab system layout differs'
-    expected = [(r['group'], r['file_offset'], r['vanilla'], r['target']) for r in table['patches']]
+    expected = [(lab_group(r), r['file_offset'], r['vanilla'], r['target']) for r in table['patches'] if r['group'] != 'hide']
     assert patches == expected, 'lab patch table differs from scripts/patch_table.py'
     return len(patches)
 
@@ -65,7 +65,12 @@ def check_table(table):
         assert data[offset:offset + 4].hex() == vanilla, f'vanilla mismatch at {offset}'
         owner = max(i for i, s in enumerate(starts) if s <= offset)
         assert offset + 4 <= starts[owner] + systems[owner][1], f'patch {offset} crosses its system'
-        # Never an initializer/simulator/visualizer offset or count field of the system header.
+        # Never an initializer/simulator/visualizer offset or count field of the system header, except the one
+        # visualizer count that 'hide' lowers from 1 to 0 (the render block stays in place, unread).
+        if group == 'hide':
+            assert offset - starts[owner] == 0xf8 and vanilla == '01000000' and row['target'] == '00000000',                 f'hide row at {offset} is not a visualizer count 1 -> 0'
+            assert starts[owner] in (starts[0], starts[3]), 'only the restored flame parts (systems 0 and 3) are hidden'
+            continue
         assert not (0xe0 <= offset - starts[owner] < 0x108), f'patch {offset} hits a layout field'
         value = struct.unpack('<f', bytes.fromhex(target))[0]
         if group == 'spawn':

@@ -26,13 +26,15 @@ sys.path.insert(0, str(LOADER / 'scripts'))
 from archive import ARCHIVE, make_archive, resource_hash  # noqa: E402
 from build_addon import entry_source  # noqa: E402
 
-VERSION = '1.0'
+VERSION = '1.1'
 LUA_NAME = 'mods/cowboybingus/flame_damage_fixed'
 GUID = '9ae59986-d77f-47d3-be47-77d50c564c30'
 TITLE = 'Flame Damage Fixed v' + VERSION
 DESCRIPTION = ("Fixes the Lumberer's flamethrower (and the Flame Sentry, which shares its flame): two flame "
-               "parts that never spawned now do, the flame starts at the Cremator's distances, and it no "
-               "longer burns the Lumberer itself. Steam build 25480438. Requires Bingus Shared Loader v18+.")
+               "parts that never spawned now do (they hit but are not drawn, so the flame still looks like one "
+               "stream), the flame starts at the Cremator's distances, and it no longer burns the weapon that "
+               "fires it while still hitting everything else. Steam build 25480438. Requires Bingus Shared "
+               "Loader v18+.")
 GAME_LUA = HERE / 'tests/game_lua.py'
 EFFECTS = (HERE / 'data/shared_flame_e3d15622a42863c4.particles',
            HERE / 'data/cremator_flame_a4f17daba8ecd8e5.particles')
