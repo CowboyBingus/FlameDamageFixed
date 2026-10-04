@@ -1,11 +1,11 @@
-Flame Damage Fixed v1.1
+Flame Damage Fixed v1.2
 Supports Helldivers 2 Steam build 25480438 / EXE 1.8.46015.0.
 
 Install Bingus Shared Loader v18 or newer and import this ZIP into Arsenal or
 HD2MM. Enable and deploy both, then restart Helldivers 2. Keep the shared
 loader as the winning Wwise startup replacement.
 
-Vanilla Plus Megapack v34 also contains this addon as an option; use either
+Vanilla Plus Megapack also contains this addon as an option; use either
 the Megapack option or this package, not both.
 
 What it fixes, for the Lumberer's flamethrower arm and the Flame Sentry (they

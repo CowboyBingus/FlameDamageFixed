@@ -1,7 +1,7 @@
-- Fixes v1.0's flame passing through armoured targets. v1.0 kept the flame off the Lumberer by moving it to a copy of its collision layer without layer 20, but layer 20 is also the game's heavy-armour and vehicle layer: Chargers, the Factory Strider, tank turrets, the Illuminate dropship and more could not be hit. In recorded play v1.0's flame had 0 hits on four Chargers in its path for 9.9 s.
-- New self-hit fix, with no collision layer changed: from its first burst until it is gone, each Lumberer or Flame Sentry shares a private Havok collision group with its own flame, and members of that group skip each other. Everything else, from Chargers to teammates, collides with the flame as in the base game. In recorded play (three Lumberers in a joined mission) the flame landed 4,822 hits on layer-20 hit-boxes (acid Chargers, Chargers, Impalers) and none on the Lumberer that fired it while the fix was running.
-- The two flame parts restored in v1.0 are no longer drawn: they still hit, but the flame no longer shows a second short, wide cone near the nozzle.
-- Unchanged from v1.0: the two missing flame parts spawn with the Cremator's timing, the flame starts at the Cremator's distances from the nozzle, and damage, fuel, heat and burning values are the base game's. Other flamethrowers are not affected.
-- Per-frame cost in recorded play: 0.008 ms per frame in missions and 0.002 ms per frame aboard the ship, about 3 bytes of garbage per frame; most burst starts under 0.5 ms, and 0.8-1.7 ms once for a Lumberer's first burst (its hit-boxes join the group). No LuaJIT code cache flushes.
-- The Flame Sentry shares the flame and the fixes; it was checked offline only (not yet in game).
+- Another mod that declares the same Windows functions can no longer stop this mod from starting.
+- A Lumberer or Flame Sentry that disappears at the wrong moment no longer leaves its hit-boxes in its private collision group.
+- Each weapon's private collision group is checked at every burst and every 0.5 s, and the weapon moves to another free group if the game or another mod starts using it.
+- An error from the game or another mod now pauses the mod with the flame's normal collision restored; it resumes after 60 clean frames, and eight errors in one burst stop it for the session.
+- Uses less of the code cache the game and every mod share.
 - Steam build 25480438 only; requires Bingus Shared Loader v18 or newer.
+- Measured in live play: 0.008 ms per frame in missions and 0.003 ms on the ship.
