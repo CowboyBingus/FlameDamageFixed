@@ -1,7 +1,0 @@
-- Another mod that declares the same Windows functions can no longer stop this mod from starting.
-- A Lumberer or Flame Sentry that disappears at the wrong moment no longer leaves its hit-boxes in its private collision group.
-- Each weapon's private collision group is checked at every burst and every 0.5 s, and the weapon moves to another free group if the game or another mod starts using it.
-- An error from the game or another mod now pauses the mod with the flame's normal collision restored; it resumes after 60 clean frames, and eight errors in one burst stop it for the session.
-- Uses less of the code cache the game and every mod share.
-- Steam build 25480438 only; requires Bingus Shared Loader v18 or newer.
-- Measured in live play: 0.008 ms per frame in missions and 0.003 ms on the ship.
